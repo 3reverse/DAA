@@ -1,0 +1,47 @@
+# iterative
+def fibonacciCust(nterms):
+    cnt= 0
+    count = 0
+    first = 0
+    second = 1
+    
+    if(nterms == 0):
+        print(first)
+    elif(nterms == 1):
+        print(first)
+        print(second)
+    else:
+        while cnt < nterms:
+            print(first)
+            count+=1
+            nth = first + second
+            count+=1
+            first = second
+            count+=1
+            second = nth
+            count+=1
+            cnt+=1
+    print("Counter value: ", count)
+    
+nterms = int(input("Enter the number: "))
+fibonacciCust(nterms)
+
+# recursive
+COUNT=0
+def recur_fibo(n):
+ global COUNT
+ COUNT=COUNT+1
+ if n <= 1:
+    return n
+ else:
+    return(recur_fibo(n-1) + recur_fibo(n-2))
+# take input from the user
+nterms = int(input("How many terms?: "))
+# check if the number of terms is valid
+if nterms <= 0:
+ print("Plese enter a positive integer")
+else:
+ print("Fibonacci sequence:")
+ for i in range(nterms):
+    print(recur_fibo(i))
+print("Steps required using Counter ", COUNT)

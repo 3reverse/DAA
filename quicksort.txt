@@ -1,0 +1,47 @@
+import random
+import time
+
+# Deterministic Quicksort
+def quicksort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    pivot = arr[len(arr) // 2]
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+
+    return quicksort(left) + middle + quicksort(right)
+
+# Non-deterministic Quicksort
+def non_deterministic_quicksort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    pivot = random.choice(arr)  # Random pivot selection
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+
+    return non_deterministic_quicksort(left) + middle + non_deterministic_quicksort(right)
+
+if __name__ == "__main__":
+    # arr = [3, 6, 8, 10, 1, 2, 1]
+    min_value = 12
+    max_value = 34000
+    length = 100000
+    arr = [random.randint(min_value, max_value) for _ in range(length)]
+
+    # Measure runtime for Deterministic Quicksort
+    start_time = time.time()
+    sorted_arr = quicksort(arr)
+    end_time = time.time()
+    print(f"Deterministic Quicksort Runtime: {(end_time - start_time)*1000} ms")
+    #print(sorted_arr)
+
+    # Measure runtime for Non-deterministic Quicksort
+    start_time = time.time()
+    sorted_arr = non_deterministic_quicksort(arr)
+    end_time = time.time()
+    print(f"Non-deterministic Quicksort Runtime: {(end_time - start_time)*1000} ms")
+    #print(sorted_arr)
